@@ -11,26 +11,19 @@ public class HotelReservationService {
         hotelList.add(hotel);
     }
 
-    public String findCheapestBestRatedHotel(int[] dayTypes) {
-        Hotel bestHotel = null;
-        int minCost = Integer.MAX_VALUE;
+    public String findBestRatedHotel(int[] dayTypes) {
+        if (hotelList.isEmpty()) return "No hotels available";
+
+        Hotel bestHotel = hotelList.get(0);
 
         for (Hotel hotel : hotelList) {
-            int cost = hotel.calculateTotalCost(dayTypes);
-
-            if (cost < minCost) {
-
-                minCost = cost;
+            if (hotel.getRating() > bestHotel.getRating()) {
                 bestHotel = hotel;
-            } else if (cost == minCost) {
-
-                if (hotel.getRating() > bestHotel.getRating()) {
-                    bestHotel = hotel;
-                }
             }
         }
 
-        return bestHotel.getName() + ", Rating: " + bestHotel.getRating() + " and Total Rates: $" + minCost;
+        int totalCost = bestHotel.calculateTotalCost(dayTypes);
+        return bestHotel.getName() + ", Rating: " + bestHotel.getRating() + " and Total Rates: $" + totalCost;
     }
 
 }
