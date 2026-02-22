@@ -1,27 +1,19 @@
 package com.test;
 
 public class Hotel {
-    private String name;
-    private int weekDayRate;
-    private int weekEndRate;
-    private int rating;
+    String name;
+    int weekDayRate;
+    int weekEndRate;
+    int rating;
+    int rewardWeekDayRate;
+    int rewardWeekEndRate;
 
-    private int rewardWeekDayRate;
-    private int rewardWeekEndRate;
-
-
-    Hotel(String name, int weekDayRate, int weekEndRate, int rating){
-        this.name = name;
-        this.weekDayRate = weekDayRate;
-        this.weekEndRate = weekEndRate;
-        this.rating = rating;
-        this.rewardWeekDayRate = weekDayRate; // default to normal rates
-        this.rewardWeekEndRate = weekEndRate;
+    public Hotel(String name, int weekDayRate, int weekEndRate, int rating) {
+        this(name, weekDayRate, weekEndRate, rating, weekDayRate, weekEndRate);
     }
 
-
-    Hotel(String name, int weekDayRate, int weekEndRate, int rating,
-          int rewardWeekDayRate, int rewardWeekEndRate){
+    public Hotel(String name, int weekDayRate, int weekEndRate, int rating,
+                 int rewardWeekDayRate, int rewardWeekEndRate) {
         this.name = name;
         this.weekDayRate = weekDayRate;
         this.weekEndRate = weekEndRate;
@@ -30,25 +22,14 @@ public class Hotel {
         this.rewardWeekEndRate = rewardWeekEndRate;
     }
 
-    public String getName() { return name; }
-    public int getWeekDayRate() { return weekDayRate; }
-    public int getWeekEndRate() { return weekEndRate; }
-    public int getRating() { return rating; }
-    public int getRewardWeekDayRate() { return rewardWeekDayRate; }
-    public int getRewardWeekEndRate() { return rewardWeekEndRate; }
-
-    public int calculateTotalCost(int[] dayTypes) {
+    public int calculateCost(int[] dayTypes, boolean isRewardCustomer) {
         int total = 0;
         for (int day : dayTypes) {
-            total += (day == 1) ? weekDayRate : weekEndRate;
-        }
-        return total;
-    }
-
-    public int calculateRewardCost(int[] dayTypes) {
-        int total = 0;
-        for (int day : dayTypes) {
-            total += (day == 1) ? rewardWeekDayRate : rewardWeekEndRate;
+            if (isRewardCustomer) {
+                total += (day == 1) ? rewardWeekDayRate : rewardWeekEndRate;
+            } else {
+                total += (day == 1) ? weekDayRate : weekEndRate;
+            }
         }
         return total;
     }
