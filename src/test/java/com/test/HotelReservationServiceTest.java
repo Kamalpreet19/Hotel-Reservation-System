@@ -11,7 +11,7 @@ public class HotelReservationServiceTest {
     public void testFindCheapestHotel() {
         HotelReservationService service = new HotelReservationService();
         service.addHotel("Lakewood", 110, 90);
-        service.addHotel("Bridgewood", 160, 60);
+        service.addHotel("Bridgewood", 150, 50);
         service.addHotel("Ridgewood", 220, 150);
 
         int[] days = {1, 1};
@@ -19,6 +19,6 @@ public class HotelReservationServiceTest {
         String expected = "Lakewood, Total Rates: $220";
         String actual = service.findCheapestHotel(days);
 
-        assertEquals(expected, actual);
+        assertEquals(expected, actual); // This is the test check
     }
 }
