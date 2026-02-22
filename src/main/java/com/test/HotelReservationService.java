@@ -11,8 +11,8 @@ public class HotelReservationService {
         hotelList.add(hotel);
     }
 
-    public String findCheapestHotel(int[] dayTypes) {
-        ArrayList<String> cheapestHotels = new ArrayList<>();
+    public String findCheapestBestRatedHotel(int[] dayTypes) {
+        Hotel bestHotel = null;
         int minCost = Integer.MAX_VALUE;
 
         for (Hotel hotel : hotelList) {
@@ -21,18 +21,16 @@ public class HotelReservationService {
             if (cost < minCost) {
 
                 minCost = cost;
-                cheapestHotels.clear();
-                cheapestHotels.add(hotel.getName());
+                bestHotel = hotel;
             } else if (cost == minCost) {
 
-                cheapestHotels.add(hotel.getName());
+                if (hotel.getRating() > bestHotel.getRating()) {
+                    bestHotel = hotel;
+                }
             }
         }
 
-
-        String hotelNames = String.join(" and ", cheapestHotels);
-        return hotelNames + ", Total Rates: $" + minCost;
+        return bestHotel.getName() + ", Rating: " + bestHotel.getRating() + " and Total Rates: $" + minCost;
     }
-
 
 }
