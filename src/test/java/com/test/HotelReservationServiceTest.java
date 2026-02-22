@@ -8,12 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HotelReservationServiceTest {
 
     @Test
-    public void givenHotelDetails_WhenHotelAdded_ShouldReturnProperCount() {
-
+    public void testFindCheapestHotel() {
         HotelReservationService service = new HotelReservationService();
-
         service.addHotel("Lakewood", 110, 90);
+        service.addHotel("Bridgewood", 160, 60);
+        service.addHotel("Ridgewood", 220, 150);
 
-        assertEquals(1, service.getHotelCount());
+        int[] days = {1, 1};
+
+        String expected = "Lakewood, Total Rates: $220";
+        String actual = service.findCheapestHotel(days);
+
+        assertEquals(expected, actual);
     }
 }

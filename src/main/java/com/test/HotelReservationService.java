@@ -11,7 +11,20 @@ public class HotelReservationService {
         hotelList.add(hotel);
     }
 
-    public int getHotelCount(){
-        return hotelList.size();
+    public String findCheapestHotel(int[] dayTypes) {
+        Hotel cheapest = null;
+        int minCost = Integer.MAX_VALUE;
+
+        for (Hotel hotel : hotelList) {
+            int cost = hotel.calculateTotalCost(dayTypes);
+            if (cost < minCost) {
+                minCost = cost;
+                cheapest = hotel;
+            }
+        }
+
+        return cheapest.getName() + ", Total Rates: $" + minCost;
     }
+
+
 }

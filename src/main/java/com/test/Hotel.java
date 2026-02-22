@@ -24,5 +24,16 @@ public class Hotel {
         return weekEndRate;
     }
 
+    public int calculateTotalCost(int[] dayTypes) {
+
+        int total = 0;
+        for (int day : dayTypes) {
+            if (day == 1)
+                total += weekDayRate;
+            else
+                total += weekEndRate;
+        }
+        return total;
+    }
 
 }
