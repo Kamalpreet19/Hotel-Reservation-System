@@ -4,12 +4,14 @@ public class Hotel {
     private String name;
     private int weekDayRate;
     private int weekEndRate;
+    private int rating;
 
 
-    Hotel(String name, int weekDayRate, int weekEndRate){
+    Hotel(String name, int weekDayRate, int weekEndRate, int rating){
         this.name = name;
         this.weekDayRate = weekDayRate;
         this.weekEndRate = weekEndRate;
+        this.rating=rating;
     }
 
     public String getName(){
@@ -22,6 +24,9 @@ public class Hotel {
 
     public int getWeekEndRate() {
         return weekEndRate;
+    }
+    public int getRating(){
+        return rating;
     }
 
     public int calculateTotalCost(int[] dayTypes) {

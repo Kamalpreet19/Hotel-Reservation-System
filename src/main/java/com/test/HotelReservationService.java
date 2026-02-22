@@ -6,8 +6,8 @@ public class HotelReservationService {
 
     private ArrayList<Hotel> hotelList=new ArrayList<>();
 
-    public void addHotel(String name, int weekDayRate, int weekEndRate){
-        Hotel hotel=new Hotel(name, weekDayRate, weekEndRate);
+    public void addHotel(String name, int weekDayRate, int weekEndRate, int rating){
+        Hotel hotel=new Hotel(name, weekDayRate, weekEndRate, rating);
         hotelList.add(hotel);
     }
 
